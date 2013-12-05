@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DatabaseLibrary
 {
-    class SanctionType
+    public class SanctionType
     {
         public int stype_id { get; set; }
         public int stype_ammount { get; set; }

@@ -66,4 +66,26 @@
     </asp:ObjectDataSource>
    
 
+    <br />
+    <br />
+    <asp:Button ID="Button3" runat="server" onclick="Button3_Click" 
+        Text="Pridat vytisk" />
+    <br />
+    <br />
+    <asp:Button ID="Button4" runat="server" onclick="Button4_Click" 
+        Text="Pridat rezervaci" />
+   
+
+    <br />
+    <br />
+    <asp:Button ID="Button5" runat="server" onclick="Button5_Click" 
+        Text="Pridat typ sankce" />
+    <br />
+    <br />
+    <asp:Button ID="Button6" runat="server" onclick="Button6_Click" 
+        Text="Pridat sanction history" />
+    <br />
+    <br />
+   
+
 </asp:Content>

@@ -45,5 +45,54 @@ namespace Knihovna_SAN.Client
 
             Response.Redirect(Request.RawUrl);
         }
-    }
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            DatabaseLibrary.Copy copy = new DatabaseLibrary.Copy();
+
+            copy.copy_is_present = 1;
+            copy.book_id = 1;
+
+            new DatabaseLibrary.CopyTable().InsertCopy(copy);
+
+            Response.Redirect(Request.RawUrl);
+        }
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            DatabaseLibrary.Reservation res = new DatabaseLibrary.Reservation();
+
+            res.client_id = 1;
+            res.copy_id = 1;
+            res.reservation_appeal = DateTime.Now;
+            res.reservation_date = DateTime.Now;
+
+            new DatabaseLibrary.ReservationTable().InsertReservation(res);
+
+            Response.Redirect(Request.RawUrl);
+        }
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            DatabaseLibrary.SanctionType stype = new DatabaseLibrary.SanctionType();
+
+            stype.stype_name = "Typ sankce";
+            stype.stype_ammount = 20;
+
+            new DatabaseLibrary.SanctionTypeTable().InsertSanctionType(stype);
+
+            Response.Redirect(Request.RawUrl);
+        }
+        protected void Button6_Click(object sender, EventArgs e)
+        {
+            DatabaseLibrary.SanctionsHistory sanHis = new DatabaseLibrary.SanctionsHistory();
+
+            sanHis.client_id = 1;
+            sanHis.sanction_desc = "popis sankce";
+            sanHis.sanction_grant = DateTime.Now;
+            sanHis.sanction_paid = DateTime.Now;
+            sanHis.stype_id = 1;
+
+            new DatabaseLibrary.SanctionsHistoryTable().InsertSanctionsHistory(sanHis);
+
+            Response.Redirect(Request.RawUrl);
+        }
+}
 }

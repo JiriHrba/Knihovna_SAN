@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DatabaseLibrary
 {
-    class SanctionsHistory
+    public class SanctionsHistory
     {
         public int sanction_id { get; set; }
         public DateTime sanction_grant { get; set; }
