@@ -18,10 +18,10 @@ namespace Knihovna_SAN.Action
 
             if (Session["actionId"] == null)
             {
-                Response.Redirect("Default.aspx");               
+                Response.Redirect("Default.aspx");
             }
 
-            // Jestli je jiz klient registrovan, zobrazime info a schovame tlacitko pro rezervaci.
+            // Jestli je jiz klient registrovan, zobrazime info a schovame tlacitko pro rezervaci a zobrazime tlacitko pro zruseni rezervace.
             int actionId = (int)Session["actionId"];
             int clientId = (int)Session["clientId"];
             bool isReg = actResTable.IsUserRegisteredToAction(actionId, clientId);
@@ -29,6 +29,11 @@ namespace Knihovna_SAN.Action
             {
                 LabelInfo.Text = "Tuto akci jste jiz rezervoval.";
                 BtnActionReservation.Visible = false;
+                BtnCancelReservation.Visible = true;
+            }
+            else
+            {
+                BtnCancelReservation.Visible = false;
             }
 
 
@@ -80,9 +85,40 @@ namespace Knihovna_SAN.Action
             else
             {
                 // Zobrazime chybovou hlasku
-                LabelInfo.Text = "Akce je jiz zaplnena.";                
+                LabelInfo.Text = "Akce je jiz zaplnena.";
             }
 
         }
-}
+
+        /// <summary>
+        /// Zruseni rezervace na akci.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void BtnCancelReservation_Click(object sender, EventArgs e)
+        {
+            // Ziskani ID akce ze session
+            int actionId = (int)Session["actionId"];
+
+            // Ziskani ID clienta
+            int clientId = (int)Session["clientId"];
+
+            // Zruseni rezervace
+            int res = actResTable.CancelClientReservation(actionId, clientId);
+
+            if (res == 1)
+            {
+                LabelInfo.Text = "Zruseni rezervace probehlo v poradku.";
+                BtnCancelReservation.Visible = false;
+                BtnActionReservation.Visible = true;
+            }
+            else
+            {
+                LabelInfo.Text = "Zruseni rezervace se nezdarilo.";
+            }
+
+
+        }
+
+    }
 }

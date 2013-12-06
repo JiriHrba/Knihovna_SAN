@@ -20,6 +20,11 @@ namespace DatabaseLibrary
         private const string DELETE = "DELETE FROM actionreservation WHERE act_reservation_id = @act_reservation_id";
 
         /// <summary>
+        /// Pro zruseni rezervace klienta na danou akci.
+        /// </summary>
+        private const string DELETE_CLIENT_RESERVATION = "DELETE FROM actionreservation WHERE action_id = @actId AND client_id = @cId";
+
+        /// <summary>
         /// Dotaz, ktery vraci pocet registrovanych uzivatelu na danou akci.
         /// </summary>
         private const string SELECT_COUNT_OF_REGISTERED_USER = "SELECT COUNT(client_id) FROM actionreservation WHERE action_id = @id";
@@ -201,6 +206,27 @@ namespace DatabaseLibrary
                 rowCount = int.Parse(string.Format("{0}", o));
             }
             return rowCount > 0;
+        }
+
+        /// <summary>
+        /// Zrusi rezervaci klienta na danou akci.
+        /// </summary>
+        /// <param name="actionId"></param>
+        /// <param name="clientId"></param>
+        /// <returns>Pocet smazanych radku</returns>
+        public int CancelClientReservation(int actionId, int clientId)
+        {
+            int rowCount = 0;
+
+            using (MySqlConnection conn = new MySqlConnection(connString))
+            {
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(DELETE_CLIENT_RESERVATION, conn);
+                command.Parameters.AddWithValue("@actId", actionId);
+                command.Parameters.AddWithValue("@cId", clientId);
+                rowCount = command.ExecuteNonQuery();                
+            }
+            return rowCount;
         }
     }
 }

@@ -12,3 +12,8 @@ C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihova_
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihova_new_git\DatabaseLibrary\bin\Debug\DatabaseLibrary.pdb
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihova_new_git\DatabaseLibrary\obj\x86\Debug\DatabaseLibrary.dll
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihova_new_git\DatabaseLibrary\obj\x86\Debug\DatabaseLibrary.pdb
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_new_get_2\DatabaseLibrary\bin\Debug\DatabaseLibrary.dll
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_new_get_2\DatabaseLibrary\bin\Debug\DatabaseLibrary.pdb
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_new_get_2\DatabaseLibrary\obj\x86\Debug\DatabaseLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_new_get_2\DatabaseLibrary\obj\x86\Debug\DatabaseLibrary.dll
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_new_get_2\DatabaseLibrary\obj\x86\Debug\DatabaseLibrary.pdb

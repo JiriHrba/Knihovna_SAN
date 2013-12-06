@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ActionReservation.aspx.cs" Inherits="Knihovna_SAN.Action.ActionReservation" MasterPageFile="~/Site.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Knihovna_SAN.Action.ActionReservation" MasterPageFile="~/Site.Master" CodeFile="ActionReservation.aspx.cs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -51,6 +51,11 @@
     <br />
     <asp:Button ID="BtnActionReservation" runat="server" 
         Text="Potvrdit rezervaci na tuto akci" onclick="BtnActionReservation_Click" />
+
+    
+
+    <asp:Button ID="BtnCancelReservation" runat="server" Text="Zrusit rezervaci" 
+        onclick="BtnCancelReservation_Click" />
 
     
 

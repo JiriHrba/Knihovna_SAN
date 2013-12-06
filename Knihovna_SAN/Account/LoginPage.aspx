@@ -29,7 +29,7 @@
     <tr>
         <td>Heslo</td>
         <td>
-            <asp:TextBox ID="TxtBoxPassword" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TxtBoxPassword" runat="server" TextMode="Password"></asp:TextBox>
         </td>
         <td>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
