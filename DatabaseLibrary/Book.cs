@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DatabaseLibrary
 {
-    class Book
+    public class Book
     {
         public int book_id { get; set; }
         public string book_name { get; set; }

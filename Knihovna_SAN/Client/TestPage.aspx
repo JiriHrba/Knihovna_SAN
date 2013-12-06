@@ -67,16 +67,88 @@
    
 
     <br />
+    <asp:ObjectDataSource ID="ODS_book" runat="server" 
+        DataObjectTypeName="DatabaseLibrary.Book" InsertMethod="InsertBook" 
+        SelectMethod="SelectAll" TypeName="DatabaseLibrary.BookTable" 
+        DeleteMethod="Delete" UpdateMethod="Update">
+        <DeleteParameters>
+            <asp:Parameter Name="bookId" Type="Int32" />
+        </DeleteParameters>
+    </asp:ObjectDataSource>
+    <asp:Table ID="Table1" runat="server" Height="79px" Width="166px">
+    </asp:Table>
+   
+
+    <p>Vytisk</p>
+    <table>
+        <tr>
+            <td>Je pritomen</td><td>
+            <asp:TextBox ID="TextBox_copy_isPresent" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td>ID knihy</td><td>
+            <asp:DropDownList ID="ddl_copy_bookID" runat="server" DataSourceID="ODS_book" 
+                DataTextField="book_name" DataValueField="book_id">
+            </asp:DropDownList>
+            </td>
+        </tr>          
+        <tr>
+            <td><asp:Button ID="addCopy" runat="server" onclick="Button3_Click" 
+                                Text="Pridat vytisk" /></td>
+        </tr>        
+    </table>
+    
     <br />
-    <asp:Button ID="Button3" runat="server" onclick="Button3_Click" 
-        Text="Pridat vytisk" />
     <br />
-    <br />
-    <asp:Button ID="Button4" runat="server" onclick="Button4_Click" 
-        Text="Pridat rezervaci" />
+    <p>Rezervace</p>
+    <table>
+        <tr>
+            <td>Klient (ID)</td><td>
+            
+            <asp:DropDownList ID="ddl_reser_client" runat="server" 
+                DataSourceID="ODS_client" DataTextField="client_login" 
+                DataValueField="client_id">
+            </asp:DropDownList>
+            
+            </td>
+        </tr>
+        <tr>
+            <td>ID vytisku</td><td>
+            
+            <asp:DropDownList ID="ddl_reser_copy" runat="server" DataSourceID="ODS_copy" 
+                DataTextField="copy_id" DataValueField="copy_id">
+            </asp:DropDownList>
+            
+            </td>
+        </tr>   
+        
+              
+        <tr>
+            <td><asp:Button ID="Button4" runat="server" onclick="Button4_Click" 
+        Text="Pridat rezervaci" /></td>
+        </tr>        
+    </table>
+    
    
 
     <br />
+    <asp:ObjectDataSource ID="ODS_client" runat="server" 
+        DataObjectTypeName="DatabaseLibrary.Client" DeleteMethod="Delete" 
+        InsertMethod="Insert" SelectMethod="SelectAll" 
+        TypeName="DatabaseLibrary.ClientTable">
+        <DeleteParameters>
+            <asp:Parameter Name="clientId" Type="Int32" />
+        </DeleteParameters>
+    </asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="ODS_copy" runat="server" 
+        DataObjectTypeName="DatabaseLibrary.Copy" DeleteMethod="Delete" 
+        InsertMethod="InsertCopy" SelectMethod="SelectAll" 
+        TypeName="DatabaseLibrary.CopyTable" UpdateMethod="Update">
+        <DeleteParameters>
+            <asp:Parameter Name="copyId" Type="Int32" />
+        </DeleteParameters>
+    </asp:ObjectDataSource>
     <br />
     <asp:Button ID="Button5" runat="server" onclick="Button5_Click" 
         Text="Pridat typ sankce" />

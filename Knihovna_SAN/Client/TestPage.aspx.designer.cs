@@ -19,6 +19,10 @@ namespace Knihovna_SAN.Client {
         protected global::System.Web.UI.WebControls.Button Button2;
         protected global::System.Web.UI.WebControls.TextBox TextBox_actionName;
         protected global::System.Web.UI.WebControls.TextBox TextBox_actionCost;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_copy_isPresent;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_copy_bookID;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_reser_client;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_reser_copy;
 
     }
 }

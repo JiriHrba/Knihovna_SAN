@@ -49,8 +49,8 @@ namespace Knihovna_SAN.Client
         {
             DatabaseLibrary.Copy copy = new DatabaseLibrary.Copy();
 
-            copy.copy_is_present = 1;
-            copy.book_id = 1;
+            copy.copy_is_present = Convert.ToInt32(TextBox_copy_isPresent.Text);
+            copy.book_id = Convert.ToInt32(ddl_copy_bookID.SelectedValue);
 
             new DatabaseLibrary.CopyTable().InsertCopy(copy);
 
@@ -60,10 +60,10 @@ namespace Knihovna_SAN.Client
         {
             DatabaseLibrary.Reservation res = new DatabaseLibrary.Reservation();
 
-            res.client_id = 1;
-            res.copy_id = 1;
+            res.client_id = Convert.ToInt32(ddl_reser_client.SelectedValue);
+            res.copy_id = Convert.ToInt32(ddl_reser_copy.SelectedValue);
             res.reservation_appeal = DateTime.Now;
-            res.reservation_date = DateTime.Now;
+            //res.reservation_date = DateTime.Now;
 
             new DatabaseLibrary.ReservationTable().InsertReservation(res);
 

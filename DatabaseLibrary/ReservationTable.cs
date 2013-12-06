@@ -121,34 +121,7 @@ namespace DatabaseLibrary
             return res;
         }
 
-        /// <summary>
-        /// Vraci vsechny rezervace ze systemu.
-        /// </summary>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, true)]
-        public List<Reservation> SelectAll()
-        {
-            List<Reservation> resList = new List<Reservation>();
-            using (MySqlConnection conn = new MySqlConnection(connString))
-            {
-                conn.Open();
-                MySqlCommand command = new MySqlCommand(SELECT_ALL, conn);
-                MySqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Reservation res = new Reservation();
-                    res.client_id = reader.GetInt32(0);
-                    res.copy_id = reader.GetInt32(1);
-                    res.reservation_id = reader.GetInt32(2);
-                    res.reservation_appeal = reader.GetDateTime(3);
-                    res.reservation_date = reader.GetDateTime(4);
-
-                    resList.Add(res);
-                }
-            }
-            return resList;
-        }
+       
 
         /// <summary>
         /// Smaze rezervaci ze systemu. Vraci pocet radku, ktere byly smazany.
