@@ -14,7 +14,7 @@ namespace DatabaseLibrary
     public class BookTable
     {
         
-        private const String INSERT_BOOK = @"INSERT INTO book (book_name, book_isbn, book_annotation, author_id) values (@author_name, @book_isbn, @book_annotation, @author_id)";
+        private const string INSERT_BOOK = @"INSERT INTO book (book_name, book_isbn, book_annotation, author_id) values (@book_name, @book_isbn, @book_annotation, @author_id)";
         private const string SELECT_ALL = "SELECT * FROM book";
         private const string UPDATE_BOOK = "UPDATE book SET book_name = @book_name, book_isbn = @book_isbn, book_annotation = @book_annotation, author_id = @author_id WHERE book_id = @book_id";
         private const string SELECT_ONE = "SELECT * FROM book WHERE book_id = @book_id";

@@ -14,7 +14,7 @@ namespace DatabaseLibrary
     public class AuthorTable
     {
         //INSERT
-        private const String INSERT_AUTHOR = @"INSERT INTO author (author_name, author_surname, author_middle_name, author_birth_date) values (@author_name, @author_surname, @author_middle_name, @author_birth_date)";
+        private const string INSERT_AUTHOR = @"INSERT INTO author (author_name, author_surname, author_middle_name, author_birth_date) values (@author_name, @author_surname, @author_middle_name, @author_birth_date)";
         private const string SELECT_ALL = "SELECT * FROM author";
         private const string UPDATE_AUTHOR = "UPDATE author SET author_name = @author_name, author_surname = @author_surname, author_middle_name = @author_middle_name, author_birth_date = @author_birth_date WHERE author_id = @author_id";
         private const string SELECT_ONE = "SELECT * FROM author WHERE author_id = @author_id";
@@ -84,6 +84,7 @@ namespace DatabaseLibrary
                 conn.Open();
                 MySqlCommand command = new MySqlCommand(UPDATE_AUTHOR, conn);
 
+                command.Parameters.AddWithValue("@author_id", author.author_id);
                 command.Parameters.AddWithValue("@author_name", author.author_name);
                 command.Parameters.AddWithValue("@author_surname", author.author_surname);
                 command.Parameters.AddWithValue("@author_middle_name", author.author_middle_name);

@@ -7,10 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Knihovna_SAN.Client {
-    
-    
-    public partial class TestPage {
+namespace Knihovna_SAN.Client
+{
+
+
+    public partial class TestPage
+    {
         protected global::System.Web.UI.WebControls.TextBox TextBox_categoryName;
         protected global::System.Web.UI.WebControls.TextBox TextBox_categoryType;
         protected global::System.Web.UI.WebControls.Button Button1;
@@ -24,5 +26,51 @@ namespace Knihovna_SAN.Client {
         protected global::System.Web.UI.WebControls.DropDownList ddl_reser_client;
         protected global::System.Web.UI.WebControls.DropDownList ddl_reser_copy;
 
+        protected global::System.Web.UI.WebControls.TextBox TextBox_stype_ammount;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_stype_name;
+
+        protected global::System.Web.UI.WebControls.TextBox TextBox_sanction_grant;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_sanction_paid;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_sanction_desc;
+
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_sanction_client_id;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_sanction_stype_id;
+
+        protected global::System.Web.UI.WebControls.TextBox TextBox_author_name;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_author_surname;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_author_middle_name;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_author_birth_date;
+
+        protected global::System.Web.UI.WebControls.TextBox TextBox_book_name;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_book_isbn;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_book_annotation;
+
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_book_author_id;
+
+        protected global::System.Web.UI.WebControls.TextBox TextBox_borrowing_from;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_borrowing_to;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_borrowing_is_returned;
+
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_borrowing_client_id;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_borrowing_copy_id;
+
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_bookCatogery_category_id;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_bookCatogery_book_id;
+
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_actionCategory_category_id;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_actionCategory_action_id;
+
+        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button Button4;
+        protected global::System.Web.UI.WebControls.Button Button5;
+        protected global::System.Web.UI.WebControls.Button Button6;
+        protected global::System.Web.UI.WebControls.Button Button7;
+        protected global::System.Web.UI.WebControls.Button Button8;
+        protected global::System.Web.UI.WebControls.Button Button9;
+        protected global::System.Web.UI.WebControls.Button Button10;
+        protected global::System.Web.UI.WebControls.Button Button11;
+
+        protected global::System.Web.UI.WebControls.TextBox TextBox_reservation_appeal;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_reservation_date;
     }
 }

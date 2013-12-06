@@ -14,7 +14,7 @@ namespace DatabaseLibrary
     public class ReservationTable
     {
         //INSERT
-        private const String INSERT_RESERVATION = @"INSERT INTO reservation (client_id, copy_id, reservation_appeal, reservation_date) values (@client_id, @copy_id, @reservation_appeal, @reservation_date)";
+        private const string INSERT_RESERVATION = @"INSERT INTO reservation (client_id, copy_id, reservation_appeal, reservation_date) values (@client_id, @copy_id, @reservation_appeal, @reservation_date)";
         private const string SELECT_ALL = "SELECT * FROM reservation";
         private const string UPDATE_RESERVATION = "UPDATE reservation SET client_id = @client_id, copy_id = @copy_id, reservation_appeal = @reservation_appeal, reservation_date = @reservation_date WHERE reservation_id = @reservation_id";
         private const string SELECT_ONE = "SELECT * FROM reservation WHERE reservation_id = @reservation_id";

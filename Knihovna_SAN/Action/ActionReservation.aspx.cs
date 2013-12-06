@@ -116,9 +116,6 @@ namespace Knihovna_SAN.Action
             {
                 LabelInfo.Text = "Zruseni rezervace se nezdarilo.";
             }
-
-
         }
-
     }
 }

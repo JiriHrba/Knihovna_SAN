@@ -106,9 +106,9 @@ namespace DatabaseLibrary
                 {
                     SanctionType stype = new SanctionType();
                     stype.stype_id = reader.GetInt32(0);
-                    stype.stype_name = reader.GetString(1);
-                    stype.stype_ammount = reader.GetInt32(2);
-
+                    stype.stype_ammount = reader.GetInt32(1);
+                    stype.stype_name = reader.GetString(2);
+                   
                     stypeList.Add(stype);
                 }
             }

@@ -63,10 +63,10 @@ namespace DatabaseLibrary
                 {
                     SanctionsHistory sanHis = new SanctionsHistory();
                     sanHis.sanction_id = reader.GetInt32(0);
-                    sanHis.client_id = reader.GetInt32(1);
-                    sanHis.sanction_desc = reader.GetString(2);
-                    sanHis.sanction_grant = reader.GetDateTime(3);
-                    sanHis.sanction_paid = reader.GetDateTime(4);
+                    sanHis.sanction_grant = reader.GetDateTime(1);
+                    sanHis.sanction_paid = reader.GetDateTime(2);
+                    sanHis.sanction_desc = reader.GetString(3);
+                    sanHis.client_id = reader.GetInt32(4);                      
                     sanHis.stype_id = reader.GetInt32(5);
 
                     sanHisList.Add(sanHis);
@@ -113,10 +113,10 @@ namespace DatabaseLibrary
                 while (reader.Read())
                 {
                     sanHis.sanction_id = reader.GetInt32(0);
-                    sanHis.client_id = reader.GetInt32(1);
-                    sanHis.sanction_desc = reader.GetString(2);
-                    sanHis.sanction_grant = reader.GetDateTime(3);
-                    sanHis.sanction_paid = reader.GetDateTime(4);
+                    sanHis.sanction_grant = reader.GetDateTime(1);
+                    sanHis.sanction_paid = reader.GetDateTime(2);
+                    sanHis.sanction_desc = reader.GetString(3);
+                    sanHis.client_id = reader.GetInt32(4);
                     sanHis.stype_id = reader.GetInt32(5);
                 }
                 reader.Close();
@@ -143,10 +143,10 @@ namespace DatabaseLibrary
                 {
                     SanctionsHistory sanHis = new SanctionsHistory();
                     sanHis.sanction_id = reader.GetInt32(0);
-                    sanHis.client_id = reader.GetInt32(1);
-                    sanHis.sanction_desc = reader.GetString(2);
-                    sanHis.sanction_grant = reader.GetDateTime(3);
-                    sanHis.sanction_paid = reader.GetDateTime(4);
+                    sanHis.sanction_grant = reader.GetDateTime(1);
+                    sanHis.sanction_paid = reader.GetDateTime(2);
+                    sanHis.sanction_desc = reader.GetString(3);
+                    sanHis.client_id = reader.GetInt32(4);
                     sanHis.stype_id = reader.GetInt32(5);
 
                     sanHisList.Add(sanHis);

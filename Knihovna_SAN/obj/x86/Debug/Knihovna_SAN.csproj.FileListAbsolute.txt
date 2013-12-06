@@ -14,3 +14,11 @@ C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihova_
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihova_new_git\Knihovna_SAN\obj\x86\Debug\Knihovna_SAN.csprojResolveAssemblyReference.cache
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihova_new_git\Knihovna_SAN\obj\x86\Debug\Knihovna_SAN.dll
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihova_new_git\Knihovna_SAN\obj\x86\Debug\Knihovna_SAN.pdb
+C:\Dokumenty\DataBox\Knihovna_SAN\Knihovna_SAN\bin\x86\Debug\Web.config
+C:\Dokumenty\DataBox\Knihovna_SAN\Knihovna_SAN\bin\x86\Debug\Knihovna_SAN.dll
+C:\Dokumenty\DataBox\Knihovna_SAN\Knihovna_SAN\bin\x86\Debug\Knihovna_SAN.pdb
+C:\Dokumenty\DataBox\Knihovna_SAN\Knihovna_SAN\bin\x86\Debug\DatabaseLibrary.dll
+C:\Dokumenty\DataBox\Knihovna_SAN\Knihovna_SAN\bin\x86\Debug\DatabaseLibrary.pdb
+C:\Dokumenty\DataBox\Knihovna_SAN\Knihovna_SAN\obj\x86\Debug\Knihovna_SAN.csprojResolveAssemblyReference.cache
+C:\Dokumenty\DataBox\Knihovna_SAN\Knihovna_SAN\obj\x86\Debug\Knihovna_SAN.dll
+C:\Dokumenty\DataBox\Knihovna_SAN\Knihovna_SAN\obj\x86\Debug\Knihovna_SAN.pdb
