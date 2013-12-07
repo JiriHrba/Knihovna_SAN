@@ -33,7 +33,7 @@ namespace DatabaseLibrary
         /// Dotaz, ktery vraci to, zda je uzivatel jiz registrovan na akci. 0 = neni registronan, > 0 = je registrovan.
         /// </summary>
         private const string SELECT_IS_CLIENT_REGISTERED = "SELECT COUNT(*) FROM actionreservation WHERE action_id = @actId AND client_id = @clientId";
-
+       
         private string connString = null;
 
         public ActionReservationTable()
@@ -233,6 +233,8 @@ namespace DatabaseLibrary
                 rowCount = command.ExecuteNonQuery();                
             }
             return rowCount;
-        }
+        }        
     }
+
+
 }

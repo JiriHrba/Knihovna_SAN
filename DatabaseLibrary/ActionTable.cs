@@ -19,6 +19,11 @@ namespace DatabaseLibrary
         private const string SELECT_ALL = "SELECT * FROM action";
         private const string DELETE = "DELETE FROM action WHERE action_id = @id";
 
+        /// <summary>
+        /// Dotaz, ktery vraci vsechny akce, na nez je rezerovan uzivatel s danym ID
+        /// </summary>
+        private const string SELECT_CLIENT_RESERVATED_ACTION = "SELECT * FROM action WHERE action_id IN (SELECT action_id FROM actionreservation WHERE client_id = @id)";
+
         private string connString;
 
         public ActionTable()
@@ -152,6 +157,29 @@ namespace DatabaseLibrary
             a.action_cost = reader.GetInt32(4);
      
             return a;
+        }
+
+        /// <summary>
+        /// Vrati vsechny akce ze systemu, na ktere je registrovan uzivel s predanym ID.
+        /// </summary>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, true)]
+        public List<Action> SelectClientsActions(int clientId)
+        {
+            List<Action> actionsList = new List<Action>();
+            using (MySqlConnection conn = new MySqlConnection(connString))
+            {
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(SELECT_CLIENT_RESERVATED_ACTION, conn);
+                command.Parameters.AddWithValue("@id", clientId);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    actionsList.Add(ReadActionData(reader));
+                }
+            }
+            return actionsList;
         }
     }
 }

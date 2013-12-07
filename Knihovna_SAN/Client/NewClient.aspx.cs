@@ -52,7 +52,7 @@ namespace Knihovna_SAN.Client
                 try
                 {
                     BusinessClient.RegisterClient(client);
-                    LabelInfo.Text = "Registrace uspesna. Heslo Vam bylo poslano emailem.\n [Ve skutecnosti se nic neposlalo, heslo je ABC123, vice info v komentari v BusinessClient.cs]";
+                    LabelInfo.Text = "Registrace uspesna. Heslo Vam bylo poslano emailem.";
                 }
                 catch (InputDataException ex)
                 {

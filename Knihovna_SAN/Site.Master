@@ -35,10 +35,11 @@
                     <Items>
                         <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
                         <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
-                        <asp:MenuItem NavigateUrl="~/Client/NewClient.aspx" Text="NewClient"/>
-                        <asp:MenuItem NavigateUrl="~/Client/ClientAdministration.aspx" Text="ClientAdministration"/>
+                        <asp:MenuItem NavigateUrl="~/Client/NewClient.aspx" Text="Nova registrace"/>
+                        <asp:MenuItem NavigateUrl="~/Client/ClientAdministration.aspx" Text="Administrace klientu"/>
                         <asp:MenuItem NavigateUrl="~/Client/TestPage.aspx" Text="TestPage"/>
                         <asp:MenuItem NavigateUrl="~/Action/ActionSummary.aspx" Text="Prehled akci"/>
+                        <asp:MenuItem NavigateUrl="~/Client/ClientProfile.aspx" Text="Muj profil"/>
                     </Items>
                 </asp:Menu>
             </div>

@@ -92,6 +92,7 @@
     <Content Include="Action\ActionReservation.aspx" />
     <Content Include="Action\ActionSummary.aspx" />
     <Content Include="Client\ClientAdministration.aspx" />
+    <Content Include="Client\ClientProfile.aspx" />
     <Content Include="Client\NewClient.aspx" />
     <Content Include="Client\TestPage.aspx" />
     <Content Include="Global.asax" />
@@ -141,6 +142,13 @@
     <Compile Include="Client\ClientAdministration.aspx.designer.cs">
       <DependentUpon>ClientAdministration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Client\ClientProfile.aspx.cs">
+      <DependentUpon>ClientProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\ClientProfile.aspx.designer.cs">
+      <DependentUpon>ClientProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Client\NewClient.aspx.cs">
       <DependentUpon>NewClient.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -178,7 +186,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>

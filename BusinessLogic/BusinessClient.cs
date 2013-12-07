@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using DatabaseLibrary;
 using System.Security.Cryptography;
+using System.Net.Mail;
+using System.Net;
 namespace BusinessLogic
 {
     public class BusinessClient
@@ -18,10 +20,8 @@ namespace BusinessLogic
         static public void RegisterClient(Client client)
         {
             // Doplnime udaje, ktere nebyly zadany v registracnim formulari
-            
-            // Heslo zatim nebudeme generovat, nechodi zatim email, nastavime proste na ABC123
-            //string password = GeneratePassword(6);
-            string password = "ABC123";            
+                        
+            string password = GeneratePassword(6);                  
             client.client_pass_hash = CalculateHashMD5(password);
             client.client_member_from = DateTime.Now;
             client.client_member_to = DateTime.Now.AddDays(1);            
@@ -34,7 +34,7 @@ namespace BusinessLogic
             cTab.Insert(client);
 
             // Odeslani emailu [zatim nebude odesilat nic]
-            //SendEmailToClient(client.client_email, password);
+            SendEmailToClient(client.client_email, password);
         }
 
         /// <summary>
@@ -57,20 +57,35 @@ namespace BusinessLogic
         }
 
         /// <summary>
-        /// Odesle email.
-        /// [Zatim nefunguje, je potreba pridat prihlasovaci udaje.]
+        /// Odesle email.        
         /// </summary>
         /// <param name="address"></param>
         /// <param name="password"></param>
         static private void SendEmailToClient(string address, string password)
         {
-            System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
-            message.To.Add(address);
-            message.Subject = "Knihova SAN - Registrace";
-            message.From = new System.Net.Mail.MailAddress("knihovna@san.cz");
-            message.Body = String.Format("Vase heslo pro prihlaseni: {0}", password);
-            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.google.cz");
-            smtp.Send(message);
+            var fromAddress = new MailAddress("knihovna.san@gmail.com", "SAN Knihovna");
+            var toAddress = new MailAddress(address);
+            const string fromPassword = "san123san123";
+            const string subject = "Knihovna - registrace do systemu";
+            string body = "Vase heslo: " + password;
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+            }
         }
 
         /// <summary>
