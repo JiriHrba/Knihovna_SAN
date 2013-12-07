@@ -70,12 +70,23 @@ namespace Knihovna_SAN.Action
 
                     DatabaseLibrary.ActionReservation actRes = new DatabaseLibrary.ActionReservation(actionId, clientId);
 
-                    // Provedeme rezervaci
-                    actResTable.InsertActionReservation(actRes);
+                    // Provedeme rezervaci - pokud dojde k vyhozeni vyjimky, klient jiz nema platne clenstvi.
+                    try
+                    {
+                        actResTable.InsertActionReservation(actRes);
+                        // Zobrazime hlasku, ze rezervace probehla v poradku                
+                        LabelInfo.Text = "Rezervace probehla uspesne.";
+                        BtnActionReservation.Visible = false;
+                    }
+                    catch (DatabaseLibrary.MembershipExpiredException ex)
+                    {
+                        // Klientovi jiz skoncilo clenstvi. Registrovat se nemuze.
+                        LabelInfo.Text = ex.Message;
 
-                    // Zobrazime hlasku, ze rezervace probehla v poradku                
-                    LabelInfo.Text = "Rezervace probehla uspesne.";
-                    BtnActionReservation.Visible = false;
+                        // Pozdeji by se misto toho mohl user presmerovat na stranku s prodluzovanim clenstvi.
+                    }
+
+                    
                 }
                 else
                 {

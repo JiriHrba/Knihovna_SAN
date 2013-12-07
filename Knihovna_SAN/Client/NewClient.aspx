@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NewClient.aspx.cs" Inherits="Knihovna_SAN.Client.NewClient" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="NewClient.aspx.cs" Inherits="Knihovna_SAN.Client.NewClient" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -29,7 +29,12 @@
             <td><asp:TextBox ID="TxtBoxEmail" runat="server"></asp:TextBox></td>
             <td><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
                     ErrorMessage="Tuto polozku musite vyplnit."  
-                    ControlToValidate="TxtBoxEmail"></asp:RequiredFieldValidator></td>
+                    ControlToValidate="TxtBoxEmail" Display="Dynamic"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+                    ControlToValidate="TxtBoxEmail" Display="Dynamic" 
+                    ErrorMessage="Emailova adresa neni platna." 
+                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+             </td>
         </tr>
 
          <tr>
@@ -43,7 +48,12 @@
             <td><asp:TextBox ID="TxtBoxBirthDate" runat="server"></asp:TextBox></td>
             <td><asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
                     ErrorMessage="Tuto polozku musite vyplnit ve tvaru DD/MM/YYYY." 
-                     ControlToValidate="TxtBoxBirthDate"></asp:RequiredFieldValidator></td>
+                     ControlToValidate="TxtBoxBirthDate" Display="Dynamic"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
+                    ControlToValidate="TxtBoxBirthDate" Display="Dynamic" 
+                    ErrorMessage="Datum musi byt ve tvaru DD/MM/YYYY." 
+                    ValidationExpression="^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/](19|20)[0-9]{2}$"></asp:RegularExpressionValidator>
+             </td>
         </tr>
 
          <tr>
@@ -82,33 +92,15 @@
                     ControlToValidate="TxtBoxLogin"></asp:RequiredFieldValidator></td>
         </tr>
 
-        <tr>
-            <td>Heslo</td>
-            <td><asp:TextBox ID="TxtBoxPass" runat="server" TextMode="Password"></asp:TextBox></td>
-            <td><asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
-                    ErrorMessage="Tuto polozku musite vyplnit." 
-                    ControlToValidate="TxtBoxPass"></asp:RequiredFieldValidator></td>
-        </tr>
 
         <tr>
-            <td>Heslo znovu</td>
-            <td><asp:TextBox ID="TxtBoxPassAgain" runat="server" TextMode="Password"></asp:TextBox></td>
-            <td><asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
-                    ErrorMessage="Tuto polozku musite vyplnit." 
-                    ControlToValidate="TxtBoxPassAgain"></asp:RequiredFieldValidator>
-                <asp:CompareValidator ID="CompareValidator1" runat="server" 
-                    ControlToCompare="TxtBoxPassAgain" ControlToValidate="TxtBoxPass" 
-                    Display="Dynamic" ErrorMessage="Hesla musi byt stejna."></asp:CompareValidator>
-            </td>
+            <td colspan="3"><asp:Label ID="LabelInfo" runat="server"></asp:Label></td>
         </tr>
-
-
 
 
     </table>
-
-      <asp:Button ID="BtnInsertClient" runat="server" Text="Vlozit noveho klienta" onclick="BtnInsertClient_Click" 
-         />
+    
+      <asp:Button ID="BtnInsertClient" runat="server" Text="Vlozit noveho klienta" onclick="BtnInsertClient_Click" />
 
 
 

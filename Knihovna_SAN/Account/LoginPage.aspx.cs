@@ -46,6 +46,13 @@ namespace Knihovna_SAN.Account
                     //    roles.Add("User");
                     //}
                   
+                    // Jeste provede kontrolu, zda ma aktivni ucet. Pokud ne, zobrazime hlasku
+                    if (loggedClient.client_is_active == false)
+                        Master.FindControl("LabelMemberInfo").Visible = true;
+                    else
+                        Master.FindControl("LabelMemberInfo").Visible = false;
+
+
                     FormsAuthentication.RedirectFromLoginPage(loggedClient.client_name, true);
                     //Context.User = new System.Security.Principal.GenericPrincipal(Context.User.Identity, roles.ToArray());
                     Session["clientId"] = loggedClient.client_id;
@@ -54,8 +61,7 @@ namespace Knihovna_SAN.Account
                 {
                     /* Zobrazeni chybove hlasky. */
                     LabelLoginInfo.ForeColor = System.Drawing.Color.Red;
-                    LabelLoginInfo.Text = "Uzivatelske jmeno nebo heslo neni spravne.";
-
+                    LabelLoginInfo.Text = "Uzivatelske jmeno nebo heslo neni spravne.";                    
                 }
             }
         }

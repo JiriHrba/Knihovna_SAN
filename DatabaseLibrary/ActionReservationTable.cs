@@ -44,12 +44,18 @@ namespace DatabaseLibrary
         }
 
         /// <summary>
-        /// Vlozi do systemu novou rezervaci na akci.
+        /// Vlozi do systemu novou rezervaci na akci. Zaroven kontroluje, zda ma klient aktivni ucet. Pokud nema, registrace se neprovede a bude vyhozena 
+        /// vyjimka MembershipExpiredException.
         /// </summary>
         /// <param name="actRes"></param>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
         public void InsertActionReservation(ActionReservation actRes)
         {
+            // Nejprve overime, zda ma klient aktivni ucet.
+            Client c = new ClientTable().SelectOne(actRes.client_id);
+            if (c.client_is_active == false)
+                throw new MembershipExpiredException("Platnost clenstvi vyprsela.");
+
             using (MySqlConnection conn = new MySqlConnection(connString))
             {
                 conn.Open();

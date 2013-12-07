@@ -26,3 +26,10 @@ C:\Dokumenty\DataBox\Knihovna_SAN\DatabaseTest\bin\Debug\DatabaseLibrary.pdb
 C:\Dokumenty\DataBox\Knihovna_SAN\DatabaseTest\obj\x86\Debug\DatabaseTest.csprojResolveAssemblyReference.cache
 C:\Dokumenty\DataBox\Knihovna_SAN\DatabaseTest\obj\x86\Debug\DatabaseTest.exe
 C:\Dokumenty\DataBox\Knihovna_SAN\DatabaseTest\obj\x86\Debug\DatabaseTest.pdb
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseTest\bin\Debug\DatabaseTest.exe
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseTest\bin\Debug\DatabaseTest.pdb
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseTest\bin\Debug\DatabaseLibrary.dll
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseTest\bin\Debug\DatabaseLibrary.pdb
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseTest\obj\x86\Debug\DatabaseTest.csprojResolveAssemblyReference.cache
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseTest\obj\x86\Debug\DatabaseTest.exe
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseTest\obj\x86\Debug\DatabaseTest.pdb

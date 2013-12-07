@@ -22,3 +22,7 @@ C:\Dokumenty\DataBox\Knihovna_SAN\DatabaseLibrary\bin\Debug\DatabaseLibrary.pdb
 C:\Dokumenty\DataBox\Knihovna_SAN\DatabaseLibrary\obj\x86\Debug\DatabaseLibrary.csprojResolveAssemblyReference.cache
 C:\Dokumenty\DataBox\Knihovna_SAN\DatabaseLibrary\obj\x86\Debug\DatabaseLibrary.dll
 C:\Dokumenty\DataBox\Knihovna_SAN\DatabaseLibrary\obj\x86\Debug\DatabaseLibrary.pdb
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseLibrary\bin\Debug\DatabaseLibrary.dll
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseLibrary\bin\Debug\DatabaseLibrary.pdb
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseLibrary\obj\x86\Debug\DatabaseLibrary.dll
+C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseLibrary\obj\x86\Debug\DatabaseLibrary.pdb

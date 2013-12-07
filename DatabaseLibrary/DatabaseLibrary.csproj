@@ -84,6 +84,8 @@
     <Compile Include="Copy.cs" />
     <Compile Include="CopyTable.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="InputDataException.cs" />
+    <Compile Include="MembershipExpiredException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reservation.cs" />
     <Compile Include="ReservationTable.cs" />

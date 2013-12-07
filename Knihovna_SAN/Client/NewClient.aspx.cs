@@ -8,6 +8,7 @@ using DatabaseLibrary;
 using System.Security.Cryptography;
 using Knihovna_SAN;
 using Knihovna_SAN.App_Code;
+using BusinessLogic;
 
 namespace Knihovna_SAN.Client
 {
@@ -19,45 +20,53 @@ namespace Knihovna_SAN.Client
         }
 
         protected void BtnInsertClient_Click(object sender, EventArgs e)
-        {
-            // Vlozeni noveho klienta do systemu
+        {           
             if (IsValid)
             {
+                DatabaseLibrary.Client client = new DatabaseLibrary.Client();
 
-                DatabaseLibrary.Client c = new DatabaseLibrary.Client();
-
-                c.client_name = TxtBoxName.Text;
-                c.client_surname = TxtBoxSurname.Text;
-                c.client_email = TxtBoxEmail.Text;
-                c.client_phone = TxtBoxPhone.Text;
+                /*
+                 * Precteni udaju z registracniho formulare
+                 */
+                client.client_name = TxtBoxName.Text;
+                client.client_surname = TxtBoxSurname.Text;
+                client.client_email = TxtBoxEmail.Text;
+                client.client_phone = TxtBoxPhone.Text;
 
                 // Parsovani data narozeni
                 string birthDate = TxtBoxBirthDate.Text;
                 string[] items = birthDate.Split('/');
                 DateTime dateBirth = new DateTime(Int32.Parse(items[2]), Int32.Parse(items[1]), Int32.Parse(items[0]));
-                c.client_birth_date = dateBirth;
-                c.client_member_from = DateTime.Now;
+                client.client_birth_date = dateBirth;
 
-                // TODO Predelat, pridat clenstvi treba na mesic, nevim... zatim jen tak, aby to fungovalo
-                c.client_member_to = DateTime.Now;
+                client.client_street = TxtBoxStreet.Text;
+                client.client_city = TxtBoxCity.Text;
+                client.client_zip = TxtBoxZIP.Text;
+                client.client_country = TxtBoxCountry.Text;
+               
+                client.client_login = TxtBoxLogin.Text;
 
-                c.client_street = TxtBoxStreet.Text;
-                c.client_city = TxtBoxCity.Text;
-                c.client_zip = TxtBoxZIP.Text;
-                c.client_country = TxtBoxCountry.Text;
-
-                // Pridavame klienta skrze obycejnou stranku, nemuze to byt zamestnanec. Vkladani zamestancu bude asi nekde v nejake administraci.
-                c.client_isEmp = false;
-
-                // Pri vytvoreni bude ucet patrne aktivni
-                c.client_is_active = true;
-
-                c.client_login = TxtBoxLogin.Text;
-                c.client_pass_hash = Cryptography.CalculateHashMD5(TxtBoxPass.Text);
-              
-                new DatabaseLibrary.ClientTable().Insert(c);
+                /*
+                 * Registrace klienta podle UC1: (vice info v komentari k metode BusinessClient.RegisterClient(Client client))
+                 */
+                try
+                {
+                    BusinessClient.RegisterClient(client);
+                    LabelInfo.Text = "Registrace uspesna. Heslo Vam bylo poslano emailem.\n [Ve skutecnosti se nic neposlalo, heslo je ABC123, vice info v komentari v BusinessClient.cs]";
+                }
+                catch (InputDataException ex)
+                {
+                    // Email nebo login jiz v systemu existuje
+                    LabelInfo.Text = ex.Message;
+                }
+                catch (Exception ex)
+                {
+                    LabelInfo.Text = "Behem registrace doslo k chybe.";
+                }                                
             }
         }
+
+       
 
         
 

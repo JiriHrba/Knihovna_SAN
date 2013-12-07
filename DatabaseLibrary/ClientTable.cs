@@ -24,6 +24,12 @@ namespace DatabaseLibrary
         /// </summary>
         private const string LOGIN_SELECT = "SELECT * FROM Client WHERE client_login = @login AND client_pass_hash = @hash";
 
+        /// <summary>
+        /// Dotazy pro overovani, zda email nebo login jiz v systemu existuje.
+        /// </summary>
+        private const string SELECT_EMAIL = "SELECT COUNT(*) FROM Client WHERE client_email = @email";
+        private const string SELECT_LOGIN = "SELECT COUNT(*) FROM Client WHERE client_login = @login";
+
         private string connString;
 
         public ClientTable()
@@ -34,12 +40,16 @@ namespace DatabaseLibrary
         }
 
         /// <summary>
-        /// Vlozi noveho klienta do systemu.
+        /// Vlozi noveho klienta do systemu. Pokud v systemu jiz existuje klient, ktery ma stejnou emailovou adresu nebo login, klient nebude vlozen a bude vyhozena
+        /// vyjimka MySqlException s popisem, proc k vyjimce doslo.
         /// </summary>
         /// <param name="client"></param>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
         public void Insert(Client client)
-        {
+        {       
+            // Provedeme kontrolu vstupni dat - pokud to neprojde, vyhodi se vyjimka
+            CheckClientData(client.client_email, client.client_login);
+
             using (MySqlConnection conn = new MySqlConnection(connString))
             {
                 conn.Open();
@@ -233,7 +243,7 @@ namespace DatabaseLibrary
 
         /// <summary>
         /// Slouzi pro prihlasovani uzivatelu. Metoda vraci objekt tridy Client, pokud uzivatel s loginem a heslem existuje. Pokud ne, 
-        /// bude vracena null hodnota.
+        /// bude vracena null hodnota. Zaroven metoda ulozi datum posledniho prihlaseni a zkontroluje, zda ma klient aktivni ucet (tj. pokud member_to > DateTime.Now).
         /// </summary>
         /// <param name="login">uzivatelske jmeno</param>
         /// <param name="passHash">MD5 hash hesla</param>
@@ -256,6 +266,16 @@ namespace DatabaseLibrary
                 {
                     reader.Read();
                     loggedClient = ReadClientData(reader);
+
+                    // Provedeme update sloupce lastAct - prave se prihlasil, nastavime na aktualni datum a cas
+                    loggedClient.client_last_act = DateTime.Now;
+
+                    // Zjistime, zda ma klient aktivni clenstvi, pokud ne, nastavime na false
+                    if (loggedClient.client_member_to < DateTime.Now)
+                        loggedClient.client_is_active = false;
+
+                    // Update v databazi
+                    Update(loggedClient);
                 }                                
             }
             return loggedClient;
@@ -284,6 +304,42 @@ namespace DatabaseLibrary
             client.client_last_act = !reader.IsDBNull(16) ? reader.GetDateTime("client_last_act") : DateTime.MinValue;
 
             return client;
+        }
+
+        /// <summary>
+        /// Provadi kontrolu, zda email nebo login clienta jiz existuje v systemu. Pokud ano, vyhodi InputDataException.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="login"></param>
+        private void CheckClientData(string email, string login)
+        {
+            int rowCount = 0;
+            string errmsg = null;
+            using (MySqlConnection conn = new MySqlConnection(connString))
+            {
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(SELECT_EMAIL, conn);
+                command.Parameters.AddWithValue("@email", email);
+                object o = command.ExecuteScalar();
+                rowCount = int.Parse(string.Format("{0}", o));
+
+                if (rowCount != 0)
+                {
+                    errmsg = "Klient s timto emailem jiz existuje.";
+                }
+                else
+                {
+                    command = new MySqlCommand(SELECT_LOGIN, conn);
+                    command.Parameters.AddWithValue("@login", login);
+                    o = command.ExecuteScalar();
+                    rowCount = int.Parse(string.Format("{0}", o));
+
+                    if (rowCount != 0)
+                        errmsg = "Klient s timto loginem jiz existuje.";
+                }                
+            }
+            if (errmsg != null)
+                throw new InputDataException(errmsg);
         }
     }
 }

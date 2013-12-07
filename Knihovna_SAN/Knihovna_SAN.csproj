@@ -185,6 +185,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{E96B72F4-F720-474C-9DAB-2683060D9D67}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DatabaseLibrary\DatabaseLibrary.csproj">
       <Project>{91DDCE6F-33C3-4FB4-ABD2-B326613E9CAC}</Project>
       <Name>DatabaseLibrary</Name>
