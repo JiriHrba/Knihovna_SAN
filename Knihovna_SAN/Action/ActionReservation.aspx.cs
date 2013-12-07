@@ -46,59 +46,21 @@ namespace Knihovna_SAN.Action
         /// <param name="e"></param>
         protected void BtnActionReservation_Click(object sender, EventArgs e)
         {
-            // Ziskani ID akce ze session
+            // Ziskani ID akce ze session a ID uzivatele ze session
             int actionId = (int)Session["actionId"];
+            int clientId = (int)Session["clientId"];
 
-            // Nacteni akce z databaze (asi to neni nutne, lze predat skrze Session, ale nechce se  mi to delat, tohle je rychlejsi :))
-            DatabaseLibrary.Action action = new DatabaseLibrary.ActionTable().SelectOne(actionId);
-
-            //DatabaseLibrary.ActionReservationTable actResTable = new DatabaseLibrary.ActionReservationTable();
-
-            // Overeni, zda je jeste volne misto    
-            int numOfRegClients = actResTable.SelectCountOfRegUser(actionId);
-
-            // Jestlize pocet registrovanych uzivatelu je mensi nez kapacita akce, muzeme provest registraci pokudd jiz klient neni registrovan
-            if (numOfRegClients < action.action_capacity)
+            try
             {
-                int clientId = (int)Session["clientId"];
-
-                // Zjisteni, zda jiz neni registrovan
-                bool isReg = actResTable.IsUserRegisteredToAction(actionId, clientId);
-
-                if (!isReg)
-                {
-
-                    DatabaseLibrary.ActionReservation actRes = new DatabaseLibrary.ActionReservation(actionId, clientId);
-
-                    // Provedeme rezervaci - pokud dojde k vyhozeni vyjimky, klient jiz nema platne clenstvi.
-                    try
-                    {
-                        actResTable.InsertActionReservation(actRes);
-                        // Zobrazime hlasku, ze rezervace probehla v poradku                
-                        LabelInfo.Text = "Rezervace probehla uspesne.";
-                        BtnActionReservation.Visible = false;
-                    }
-                    catch (DatabaseLibrary.MembershipExpiredException ex)
-                    {
-                        // Klientovi jiz skoncilo clenstvi. Registrovat se nemuze.
-                        LabelInfo.Text = ex.Message;
-
-                        // Pozdeji by se misto toho mohl user presmerovat na stranku s prodluzovanim clenstvi.
-                    }
-
-                    
-                }
-                else
-                {
-                    LabelInfo.Text = "Tuto akci jste jiz rezervoval.";
-                }
+                BusinessLogic.BusinessAction.ReservationToAction(actionId, clientId);
+                LabelInfo.Text = "Rezervace probehla v poradku.";
+                BtnActionReservation.Visible = false;
+                BtnCancelReservation.Visible = true;
             }
-            else
+            catch (BusinessLogic.ReservationException ex)
             {
-                // Zobrazime chybovou hlasku
-                LabelInfo.Text = "Akce je jiz zaplnena.";
-            }
-
+                LabelInfo.Text = ex.Message;
+            }            
         }
 
         /// <summary>
@@ -114,19 +76,19 @@ namespace Knihovna_SAN.Action
             // Ziskani ID clienta
             int clientId = (int)Session["clientId"];
 
-            // Zruseni rezervace
-            int res = actResTable.CancelClientReservation(actionId, clientId);
-
-            if (res == 1)
+            try
             {
+                BusinessLogic.BusinessAction.CancelReservation(actionId, clientId);
                 LabelInfo.Text = "Zruseni rezervace probehlo v poradku.";
-                BtnCancelReservation.Visible = false;
                 BtnActionReservation.Visible = true;
+                BtnCancelReservation.Visible = false;
             }
-            else
+            catch (BusinessLogic.ReservationException ex)
             {
-                LabelInfo.Text = "Zruseni rezervace se nezdarilo.";
+                LabelInfo.Text = ex.Message;
             }
+
+            
         }
     }
 }

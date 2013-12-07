@@ -26,6 +26,7 @@ namespace BusinessLogic
             client.client_member_from = DateTime.Now;
             client.client_member_to = DateTime.Now.AddDays(1);            
             client.client_isEmp = false;
+            client.client_is_active = true;
 
             ClientTable cTab = new ClientTable();
 
