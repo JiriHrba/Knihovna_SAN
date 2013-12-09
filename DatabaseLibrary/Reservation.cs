@@ -11,6 +11,6 @@ namespace DatabaseLibrary
         public DateTime reservation_date { get; set; }
         public DateTime reservation_appeal { get; set; }
         public int client_id { get; set; }
-        public int copy_id { get; set; }
+        public int book_id { get; set; }
     }
 }
