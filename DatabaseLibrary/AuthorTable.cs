@@ -65,7 +65,7 @@ namespace DatabaseLibrary
                     author.author_id = reader.GetInt32(0);
                     author.author_name = reader.GetString(1);
                     author.author_surname = reader.GetString(2);
-                    author.author_middle_name = reader.GetString(3);
+                    author.author_middle_name = !reader.IsDBNull(3) ? reader.GetString(3) : null;
                     author.author_birth_date = reader.GetDateTime(4);
 
                     autList.Add(author);

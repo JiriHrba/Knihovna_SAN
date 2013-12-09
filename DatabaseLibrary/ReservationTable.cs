@@ -62,11 +62,12 @@ namespace DatabaseLibrary
                 while (reader.Read())
                 {
                     Reservation res = new Reservation();
-                    res.client_id = reader.GetInt32(0);
-                    res.copy_id = reader.GetInt32(1);
-                    res.reservation_id = reader.GetInt32(2);
-                    res.reservation_appeal = reader.GetDateTime(3);
-                    res.reservation_date = reader.GetDateTime(4);
+                    
+                    res.reservation_id = reader.GetInt32(0);
+                    res.reservation_appeal = reader.GetDateTime(1);
+                    res.reservation_date = reader.GetDateTime(2);
+                    res.client_id = reader.GetInt32(3);
+                    res.copy_id = reader.GetInt32(4);
 
                     stypeList.Add(res);
                 }
