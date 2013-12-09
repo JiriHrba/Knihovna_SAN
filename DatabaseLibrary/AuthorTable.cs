@@ -43,7 +43,7 @@ namespace DatabaseLibrary
                 command.Parameters.AddWithValue("@author_middle_name", author.author_middle_name);
                 command.Parameters.AddWithValue("@author_birth_date", author.author_birth_date);
 
-                /* Executes the command */
+                /* Executes the command ppp*/
                 command.ExecuteNonQuery();
             }
         }

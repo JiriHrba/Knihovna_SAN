@@ -48,7 +48,7 @@ namespace DatabaseLibrary
             }
         }
 
-        //SELECT ALL
+        //SELECT ALL lll
         [DataObjectMethod(DataObjectMethodType.Select, true)]
         public List<Reservation> SelectAll()
         {
