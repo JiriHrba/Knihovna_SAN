@@ -5,3 +5,10 @@ C:\Users\Petr\Documents\School\MGR\3. semestr\Systemova analyza a navrh\Knihovna
 C:\Users\Petr\Documents\School\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
 C:\Users\Petr\Documents\School\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\BusinessLogic\obj\Debug\BusinessLogic.dll
 C:\Users\Petr\Documents\School\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\BusinessLogic\obj\Debug\BusinessLogic.pdb
+C:\Dokumenty\DataBox\Knihovna_SAN\BusinessLogic\bin\Debug\BusinessLogic.dll
+C:\Dokumenty\DataBox\Knihovna_SAN\BusinessLogic\bin\Debug\BusinessLogic.pdb
+C:\Dokumenty\DataBox\Knihovna_SAN\BusinessLogic\bin\Debug\DatabaseLibrary.dll
+C:\Dokumenty\DataBox\Knihovna_SAN\BusinessLogic\bin\Debug\DatabaseLibrary.pdb
+C:\Dokumenty\DataBox\Knihovna_SAN\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
+C:\Dokumenty\DataBox\Knihovna_SAN\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\Dokumenty\DataBox\Knihovna_SAN\BusinessLogic\obj\Debug\BusinessLogic.pdb

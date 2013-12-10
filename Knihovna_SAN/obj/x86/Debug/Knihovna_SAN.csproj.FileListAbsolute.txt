@@ -32,3 +32,5 @@ C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\Knihovna_SAN\obj\x86\Debug\Knihovna_SAN.pdb
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\Knihovna_SAN\bin\x86\Debug\BusinessLogic.dll
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\Knihovna_SAN\bin\x86\Debug\BusinessLogic.pdb
+C:\Dokumenty\DataBox\Knihovna_SAN\Knihovna_SAN\bin\x86\Debug\BusinessLogic.dll
+C:\Dokumenty\DataBox\Knihovna_SAN\Knihovna_SAN\bin\x86\Debug\BusinessLogic.pdb

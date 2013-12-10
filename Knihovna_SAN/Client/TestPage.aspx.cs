@@ -65,7 +65,7 @@ namespace Knihovna_SAN.Client
             DatabaseLibrary.Reservation res = new DatabaseLibrary.Reservation();
 
             res.client_id = Convert.ToInt32(ddl_reser_client.SelectedValue);
-            res.copy_id = Convert.ToInt32(ddl_reser_copy.SelectedValue);
+            res.book_id= Convert.ToInt32(ddl_reser_copy.SelectedValue);
 
             string reservation_appeal = TextBox_reservation_appeal.Text;
             string[] items = reservation_appeal.Split('/');
