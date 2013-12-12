@@ -1,0 +1,7 @@
+C:\Dokumenty\DataBox\Knihovna_SAN\BusinessLogic\bin\x86\Debug\BusinessLogic.dll
+C:\Dokumenty\DataBox\Knihovna_SAN\BusinessLogic\bin\x86\Debug\BusinessLogic.pdb
+C:\Dokumenty\DataBox\Knihovna_SAN\BusinessLogic\bin\x86\Debug\DatabaseLibrary.dll
+C:\Dokumenty\DataBox\Knihovna_SAN\BusinessLogic\bin\x86\Debug\DatabaseLibrary.pdb
+C:\Dokumenty\DataBox\Knihovna_SAN\BusinessLogic\obj\x86\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
+C:\Dokumenty\DataBox\Knihovna_SAN\BusinessLogic\obj\x86\Debug\BusinessLogic.dll
+C:\Dokumenty\DataBox\Knihovna_SAN\BusinessLogic\obj\x86\Debug\BusinessLogic.pdb

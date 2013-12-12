@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 <h1>Zakladni informace</h1>
-<hr>
+<hr/>
 
     <asp:DetailsView ID="DetailsView1" runat="server" Height="50px" 
     Width="670px" AutoGenerateRows="False" CellPadding="4" 
@@ -46,7 +46,7 @@
     </asp:DetailsView>
 
 <h1>Rezervovane akce</h1>
-<hr>
+<hr/>
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
         AutoGenerateColumns="False" CellPadding="4" 
         DataSourceID="ClientsActionObjectDataSource1" ForeColor="#333333" 
@@ -100,5 +100,10 @@
     </SelectParameters>
 </asp:ObjectDataSource>
 
+<h1>Rezervované knihy</h1>
+<hr/>
+
+<h1>Aktuální sankce</h1>
+<hr/>
 
 </asp:Content>

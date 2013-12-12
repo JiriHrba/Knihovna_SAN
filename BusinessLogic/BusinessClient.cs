@@ -38,6 +38,38 @@ namespace BusinessLogic
         }
 
         /// <summary>
+        /// Tato metoda se vola, pokud klient zapomene sve heslo a necha si poslat nove. Nove nahodne vygenerovane 
+        /// heslo bude poslano na email, ktery klient vyplnil pri registraci.
+        /// </summary>
+        /// <param name="email">adresa, na kterou bude zaslano nove heslo</param>
+        static public void NewPasswordForClient(string email)
+        {
+            ClientTable ctab = new ClientTable();
+
+            // Nejprve overime, zda email mame v databazi.
+            if (ctab.CheckEmail(email))
+            {
+                /* Pokud existuje, muzeme vygenerovat nove heslo, provest zmeny v DB a poslat 
+                   klientovi email.
+                */
+                string newPass = GeneratePassword(6);
+                string newPassHash = CalculateHashMD5(newPass);
+
+                // Zmena hesla v DB
+                ctab.ChangePassword(email, newPassHash);
+
+                // Poslani emailu
+                string text = String.Format("U Vaseho uctu bylo zmeneno heslo. Nove heslo je nyni {0}.", newPass);
+                SendEmailToClient(email, text, "Knihovna SAN - Zmena hesla");
+            }
+            else
+            {
+                // Email v systemu neexistuje. Vyhodime expcetion.
+                throw new ForgotPasswordException("Tento email neni v systemu evidovan.");
+            }
+        }
+
+        /// <summary>
         /// Vygeneruje nahodne heslo z pismen a cisel.
         /// </summary>
         /// <param name="passwordLength"></param>
@@ -57,7 +89,8 @@ namespace BusinessLogic
         }
 
         /// <summary>
-        /// Odesle email.        
+        /// Odesle email klientovi. Tato metoda se pouziva, pokud se uzivatel registruje a je mu posilano 
+        /// jeho nove heslo.
         /// </summary>
         /// <param name="address"></param>
         /// <param name="password"></param>
@@ -68,6 +101,38 @@ namespace BusinessLogic
             const string fromPassword = "san123san123";
             const string subject = "Knihovna - registrace do systemu";
             string body = "Vase heslo: " + password;
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+            }
+        }
+
+        /// <summary>
+        /// Obecna metoda pro odeslani emailu klientovi. 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="text"></param>
+        /// <param name="subject"></param>
+        static public void SendEmailToClient(string email, string text, string subject)
+        {
+            var fromAddress = new MailAddress("knihovna.san@gmail.com", "SAN Knihovna");
+            var toAddress = new MailAddress(email);
+            const string fromPassword = "san123san123";            
+            string body = text;
 
             var smtp = new SmtpClient
             {

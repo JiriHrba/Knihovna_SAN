@@ -30,6 +30,11 @@ namespace DatabaseLibrary
         private const string SELECT_EMAIL = "SELECT COUNT(*) FROM Client WHERE client_email = @email";
         private const string SELECT_LOGIN = "SELECT COUNT(*) FROM Client WHERE client_login = @login";
 
+        /// <summary>
+        /// Provadi update hesla klienta. 
+        /// </summary>
+        private const string UPDATE_PASSWORD = "UPDATE Client SET client_pass_hash = @newHash WHERE client_email = @email";
+
         private string connString;
 
         public ClientTable()
@@ -311,7 +316,7 @@ namespace DatabaseLibrary
         /// </summary>
         /// <param name="email"></param>
         /// <param name="login"></param>
-        private void CheckClientData(string email, string login)
+        public void CheckClientData(string email, string login)
         {
             int rowCount = 0;
             string errmsg = null;
@@ -340,6 +345,42 @@ namespace DatabaseLibrary
             }
             if (errmsg != null)
                 throw new InputDataException(errmsg);
+        }
+
+        /// <summary>
+        /// Vraci true, pokud predany email v systemu existuje, jinak vraci false.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public bool CheckEmail(string email)
+        {
+            int rowCount = 0;
+            using (MySqlConnection conn = new MySqlConnection(connString))
+            {
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(SELECT_EMAIL, conn);
+                command.Parameters.AddWithValue("@email", email);
+                object o = command.ExecuteScalar();
+                rowCount = int.Parse(string.Format("{0}", o));
+            }
+            return rowCount > 0;
+        }
+
+        /// <summary>
+        /// Provede zmenu hesla klienta. 
+        /// </summary>
+        /// <param name="clientEmail"></param>
+        /// <param name="newPassHash"></param>
+        public void ChangePassword(string clientEmail, string newPassHash)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connString))
+            {
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(UPDATE_PASSWORD, conn);
+                command.Parameters.AddWithValue("@email", clientEmail);
+                command.Parameters.AddWithValue("@newHash", newPassHash);
+                command.ExecuteNonQuery();                
+            }
         }
     }
 }
