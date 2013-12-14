@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using DatabaseLibrary;
 using System.Web.Security;
+using Knihovna_SAN.App_Code;
 
 namespace Knihovna_SAN.Client
 {
@@ -13,12 +14,8 @@ namespace Knihovna_SAN.Client
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session.Clear();
-            if (!Page.IsPostBack)
-            {
-                //LabelTest.Text = new DatabaseLibrary.ReservationTable().SelectCount(1).ToString();
-                //LabelTest.Text = new DatabaseLibrary.CopyTable().SelectCount(1).ToString();
-            }
+            //Session.Clear();
+            
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -109,8 +106,9 @@ namespace Knihovna_SAN.Client
         //prida rezervaci knihy z pohledu klienta
         protected void Button12_Click(object sender, EventArgs e)
         {
-            int clientId = 1; //tady je potreba ziskat id prihlaseneho uzivatele
-            
+            //int clientId = 1; //tady je potreba ziskat id prihlaseneho uzivatele
+            //Session["clientId"] = 2;
+            int clientId = (int)Context.Session["clientId"];
             DateTime reservation_appeal = Convert.ToDateTime(null);
             //prida zaznam do rezervace knihy
             DatabaseLibrary.Reservation res = new DatabaseLibrary.Reservation();

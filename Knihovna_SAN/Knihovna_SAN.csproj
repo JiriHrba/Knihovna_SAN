@@ -103,6 +103,7 @@
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Web.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
