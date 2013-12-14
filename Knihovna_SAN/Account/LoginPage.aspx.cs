@@ -31,8 +31,6 @@ namespace Knihovna_SAN.Account
                 DatabaseLibrary.ClientTable cTable = new DatabaseLibrary.ClientTable();
                 DatabaseLibrary.Client loggedClient = cTable.LoginClient(username, password);
 
-
-
                 if (loggedClient != null)
                 {
                     //List<string> roles = new List<string>();
