@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DatabaseLibrary;
+using System.Web.Security;
 
 namespace Knihovna_SAN.Client
 {
@@ -13,6 +14,11 @@ namespace Knihovna_SAN.Client
         protected void Page_Load(object sender, EventArgs e)
         {
             Session.Clear();
+            if (!Page.IsPostBack)
+            {
+                //LabelTest.Text = new DatabaseLibrary.ReservationTable().SelectCount(1).ToString();
+                //LabelTest.Text = new DatabaseLibrary.CopyTable().SelectCount(1).ToString();
+            }
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -61,28 +67,73 @@ namespace Knihovna_SAN.Client
         }
         protected void Button4_Click(object sender, EventArgs e)
         {
+            
+            DateTime reservation_appeal = Convert.ToDateTime(null);
+            //prida zaznam do rezervace knihy
+            DatabaseLibrary.Reservation res = new DatabaseLibrary.Reservation();
+            
+            res.client_id = Convert.ToInt32(ddl_reser_client.SelectedValue);
+            res.book_id = Convert.ToInt32(ddl_reser_copy.SelectedValue);
+
+            long copy_count = new DatabaseLibrary.CopyTable().SelectCount(res.book_id);
+            long reser_count = new DatabaseLibrary.ReservationTable().SelectCount(res.book_id);
+
+            if (copy_count > reser_count)
+            {
+                reservation_appeal = DateTime.Now;
+            }
+            
+            //if (TextBox_reservation_appeal.Text != "")
+            //{
+            //    string reservation_appeal = TextBox_reservation_appeal.Text;
+            //    string[] items = reservation_appeal.Split('/');
+            //    reservation_appeal = new DateTime(Int32.Parse(items[2]), Int32.Parse(items[1]), Int32.Parse(items[0]));
+            //}
+            
+            
+
+            //string reservation_date = TextBox_reservation_date.Text;
+            //string[] items2 = reservation_date.Split('/');
+            //DateTime reservation_date_toDB = new DateTime(Int32.Parse(items2[2]), Int32.Parse(items2[1]), Int32.Parse(items2[0]));
+            //datum vlozeni rezervace bude vzdy NOW
+            res.reservation_date = DateTime.Now;
+
+            res.reservation_appeal = reservation_appeal;
+            //res.reservation_date = reservation_date_toDB;
+            
+            new DatabaseLibrary.ReservationTable().InsertReservation(res);
+            
+            Response.Redirect(Request.RawUrl);
+        }
+
+        //prida rezervaci knihy z pohledu klienta
+        protected void Button12_Click(object sender, EventArgs e)
+        {
+            int clientId = 1; //tady je potreba ziskat id prihlaseneho uzivatele
+            
+            DateTime reservation_appeal = Convert.ToDateTime(null);
             //prida zaznam do rezervace knihy
             DatabaseLibrary.Reservation res = new DatabaseLibrary.Reservation();
 
-            res.client_id = Convert.ToInt32(ddl_reser_client.SelectedValue);
-            res.book_id= Convert.ToInt32(ddl_reser_copy.SelectedValue);
+            res.client_id = clientId;
+            res.book_id = Convert.ToInt32(ddl_reser_copy.SelectedValue);
 
-            string reservation_appeal = TextBox_reservation_appeal.Text;
-            string[] items = reservation_appeal.Split('/');
-            DateTime reservation_appeal_toDB = new DateTime(Int32.Parse(items[2]), Int32.Parse(items[1]), Int32.Parse(items[0]));
+            long copy_count = new DatabaseLibrary.CopyTable().SelectCount(res.book_id);
+            long reser_count = new DatabaseLibrary.ReservationTable().SelectCount(res.book_id);
 
-            string reservation_date = TextBox_reservation_date.Text;
-            string[] items2 = reservation_date.Split('/');
-            DateTime reservation_date_toDB = new DateTime(Int32.Parse(items2[2]), Int32.Parse(items2[1]), Int32.Parse(items2[0]));
-
-            res.reservation_appeal = reservation_appeal_toDB;
-            res.reservation_date = reservation_date_toDB;
+            if (copy_count > reser_count)
+            {
+                reservation_appeal = DateTime.Now;
+            }
+           
+            res.reservation_date = DateTime.Now;
+            res.reservation_appeal = reservation_appeal;
 
             new DatabaseLibrary.ReservationTable().InsertReservation(res);
 
             Response.Redirect(Request.RawUrl);
-        }
 
+        }
 
         protected void Button5_Click(object sender, EventArgs e)
         {
@@ -206,5 +257,6 @@ namespace Knihovna_SAN.Client
 
             Response.Redirect(Request.RawUrl);
         }
-    }
+        
+}
 }

@@ -33,3 +33,10 @@ C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseTest\obj\x86\Debug\DatabaseTest.csprojResolveAssemblyReference.cache
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseTest\obj\x86\Debug\DatabaseTest.exe
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseTest\obj\x86\Debug\DatabaseTest.pdb
+E:\san\DatabaseTest\bin\Debug\DatabaseTest.exe
+E:\san\DatabaseTest\bin\Debug\DatabaseTest.pdb
+E:\san\DatabaseTest\bin\Debug\DatabaseLibrary.dll
+E:\san\DatabaseTest\bin\Debug\DatabaseLibrary.pdb
+E:\san\DatabaseTest\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\san\DatabaseTest\obj\x86\Debug\DatabaseTest.exe
+E:\san\DatabaseTest\obj\x86\Debug\DatabaseTest.pdb

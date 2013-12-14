@@ -21,7 +21,7 @@ namespace DatabaseLibrary
         private const string UPDATE_COPY = "UPDATE copy SET copy_is_present = @copy_is_present, book_id = @book_id WHERE copy_id = @copy_id";
         private const string SELECT_ONE = "SELECT * FROM copy WHERE copy_id = @copy_id";
         private const string DELETE = "DELETE FROM copy WHERE copy_id = @copy_id";
-        
+        private const string SELECT_COUNT_BY_BOOKID = "SELECT COUNT(*) FROM copy WHERE book_id = @book_id";
         private string connString = null;
 
         public CopyTable()
@@ -140,7 +140,26 @@ namespace DatabaseLibrary
                 reader.Close();
             }
             return copy;
-        }     
+        }
+
+        /// <summary>
+        /// Vraci count kopii ze systemu podle BOOK ID.
+        /// 
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public long SelectCount(int bookId)
+        {
+            long count = 0;
+
+            using (MySqlConnection conn = new MySqlConnection(connString))
+            {
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(SELECT_COUNT_BY_BOOKID, conn);
+                command.Parameters.AddWithValue("@book_id", bookId);
+                count = Convert.ToInt64(command.ExecuteScalar());
+
+            }
+            return count;
+        }
 
         /// <summary>
         /// Smaze vytisk ze systemu. Vraci pocet radku, ktere byly smazany.

@@ -19,6 +19,7 @@ namespace DatabaseLibrary
         private const string UPDATE_RESERVATION = "UPDATE reservation SET client_id = @client_id, book_id = @book_id, reservation_appeal = @reservation_appeal, reservation_date = @reservation_date WHERE reservation_id = @reservation_id";
         private const string SELECT_ONE = "SELECT * FROM reservation WHERE reservation_id = @reservation_id";
         private const string DELETE = "DELETE FROM reservation WHERE reservation_id = @reservation_id";
+        private const string SELECT_COUNT_RES_BY_BOOKID = "SELECT COUNT(*) FROM reservation WHERE book_id = @book_id";
         //private const String SELECT_ALL_BY_BOOKID;
         private string connString = null;
 
@@ -32,6 +33,8 @@ namespace DatabaseLibrary
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
         public void InsertReservation(Reservation res)
         {
+            
+
             using (MySqlConnection conn = new MySqlConnection(connString))
             {
                 conn.Open();
@@ -48,11 +51,11 @@ namespace DatabaseLibrary
             }
         }
 
-        //SELECT ALL lll
+        //SELECT ALL
         [DataObjectMethod(DataObjectMethodType.Select, true)]
         public List<Reservation> SelectAll()
         {
-            List<Reservation> stypeList = new List<Reservation>();
+            List<Reservation> resList = new List<Reservation>();
             using (MySqlConnection conn = new MySqlConnection(connString))
             {
                 conn.Open();
@@ -63,16 +66,16 @@ namespace DatabaseLibrary
                 {
                     Reservation res = new Reservation();
                     
-                    res.reservation_id = reader.GetInt32(0);
-                    res.reservation_appeal = reader.GetDateTime(1);
-                    res.reservation_date = reader.GetDateTime(2);
-                    res.client_id = reader.GetInt32(3);
-                    res.book_id = reader.GetInt32(4);
+                    res.reservation_id = reader.GetInt32("reservation_id");
+                    res.reservation_date = reader.GetDateTime("reservation_date");
+                    res.reservation_appeal = reader.GetDateTime("reservation_appeal");                
+                    res.client_id = reader.GetInt32("client_id");
+                    res.book_id = reader.GetInt32("book_id");
 
-                    stypeList.Add(res);
+                    resList.Add(res);
                 }
             }
-            return stypeList;
+            return resList;
         }
         /// <summary>
         /// Provede update jedne rezervace.
@@ -121,6 +124,26 @@ namespace DatabaseLibrary
                 reader.Close();
             }
             return res;
+        }
+
+
+        /// <summary>
+        /// Vraci count rezervaci ze systemu podle BOOK ID.
+        /// 
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public long SelectCount(int bookId)
+        {
+            long count = 0;
+            
+            using (MySqlConnection conn = new MySqlConnection(connString))
+            {
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(SELECT_COUNT_RES_BY_BOOKID, conn);
+                command.Parameters.AddWithValue("@book_id", bookId);
+                count = Convert.ToInt64(command.ExecuteScalar());
+                
+            }
+            return count;
         }
 
        

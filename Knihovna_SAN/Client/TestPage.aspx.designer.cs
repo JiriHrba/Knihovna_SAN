@@ -69,8 +69,13 @@ namespace Knihovna_SAN.Client
         protected global::System.Web.UI.WebControls.Button Button9;
         protected global::System.Web.UI.WebControls.Button Button10;
         protected global::System.Web.UI.WebControls.Button Button11;
+        protected global::System.Web.UI.WebControls.Button Button12;
 
         protected global::System.Web.UI.WebControls.TextBox TextBox_reservation_appeal;
         protected global::System.Web.UI.WebControls.TextBox TextBox_reservation_date;
+
+        
+        
+
     }
 }

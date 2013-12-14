@@ -34,3 +34,13 @@ C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\Knihovna_SAN\bin\x86\Debug\BusinessLogic.pdb
 C:\Dokumenty\DataBox\Knihovna_SAN\Knihovna_SAN\bin\x86\Debug\BusinessLogic.dll
 C:\Dokumenty\DataBox\Knihovna_SAN\Knihovna_SAN\bin\x86\Debug\BusinessLogic.pdb
+E:\san\Knihovna_SAN\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\san\Knihovna_SAN\bin\x86\Debug\Web.config
+E:\san\Knihovna_SAN\bin\x86\Debug\Knihovna_SAN.dll
+E:\san\Knihovna_SAN\bin\x86\Debug\Knihovna_SAN.pdb
+E:\san\Knihovna_SAN\bin\x86\Debug\BusinessLogic.dll
+E:\san\Knihovna_SAN\bin\x86\Debug\DatabaseLibrary.dll
+E:\san\Knihovna_SAN\bin\x86\Debug\BusinessLogic.pdb
+E:\san\Knihovna_SAN\bin\x86\Debug\DatabaseLibrary.pdb
+E:\san\Knihovna_SAN\obj\x86\Debug\Knihovna_SAN.dll
+E:\san\Knihovna_SAN\obj\x86\Debug\Knihovna_SAN.pdb
