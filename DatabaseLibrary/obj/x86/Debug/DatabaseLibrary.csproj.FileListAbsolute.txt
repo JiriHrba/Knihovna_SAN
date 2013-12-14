@@ -25,3 +25,8 @@ C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseLibrary\bin\Debug\DatabaseLibrary.pdb
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseLibrary\obj\x86\Debug\DatabaseLibrary.dll
 C:\Users\Petr\Documents\school\MGR\3. semestr\Systemova analyza a navrh\Knihovna_SAN_new3\DatabaseLibrary\obj\x86\Debug\DatabaseLibrary.pdb
+E:\san\DatabaseLibrary\bin\Debug\DatabaseLibrary.dll
+E:\san\DatabaseLibrary\bin\Debug\DatabaseLibrary.pdb
+E:\san\DatabaseLibrary\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\san\DatabaseLibrary\obj\x86\Debug\DatabaseLibrary.dll
+E:\san\DatabaseLibrary\obj\x86\Debug\DatabaseLibrary.pdb

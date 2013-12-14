@@ -168,26 +168,11 @@
     <p>
         --------------------------------------------------------</p>
     <p>
-        Rezervace</p>
+        Rezervace 
+        knihy z ADMINA (ulozi se id klienta, id knihy. Jako datum rezervace se zada 
+        aktualni datum, pokud je aspon jedna kopie knihy volna, zada se datum vyzvednuti 
+        taky aktualni, jinak NULL</p>
     <table>
-    <tr>
-            <td>
-                Reservation_date
-            </td>
-            <td>
-                <asp:TextBox ID="TextBox_reservation_date" runat="server"></asp:TextBox>
-                //datum ve tvaru dd/mm/yyyy (s lomitky)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Reservation_appeal
-            </td>
-            <td>
-                <asp:TextBox ID="TextBox_reservation_appeal" runat="server"></asp:TextBox>
-                //datum ve tvaru dd/mm/yyyy (s lomitky)
-            </td>
-        </tr>
         <tr>
             <td>
                 Klient (ID)
@@ -200,11 +185,10 @@
         </tr>
         <tr>
             <td>
-                ID vytisku
-            </td>
+                Kniha (ID)</td>
             <td>
-                <asp:DropDownList ID="ddl_reser_copy" runat="server" DataSourceID="ODS_copy" DataTextField="copy_id"
-                    DataValueField="copy_id">
+                <asp:DropDownList ID="ddl_reser_copy" runat="server" DataSourceID="ODS_book" DataTextField="book_name"
+                    DataValueField="book_id">
                 </asp:DropDownList>
             </td>
         </tr>
@@ -214,23 +198,53 @@
             </td>
         </tr>
     </table>
-    <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" DataSourceID="ObjectDataReservationSource1">
+    <br />
+
+    <p>
+        Rezervace 
+        knihy z pohledu klienta (ulozi se id klienta, id knihy. Jako datum rezervace se zada 
+        aktualni datum, pokud je aspon jedna kopie knihy volna, zada se datum vyzvednuti 
+        taky aktualni, jinak NULL
+    </p>
+    <p>Vybrat knihu k rezervaci</p>
+                <asp:DropDownList ID="ddl_reser_copy0" runat="server" 
+        DataSourceID="ODS_book" DataTextField="book_name"
+                    DataValueField="book_id">
+                </asp:DropDownList>
+            <br />
+    
+    <br />
+    <asp:Button ID="Button12" runat="server" 
+            Text="Pridat rezervaci" onclick="Button12_Click" />
+    <br />
+
+    <asp:GridView ID="GridView12" runat="server" AllowPaging="True" 
+        AutoGenerateColumns="False" DataSourceID="ODS_reservation" 
+        DataKeyNames="reservation_id" >
         <Columns>
-            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowSelectButton="True" />
-            <asp:BoundField DataField="reservation_id" HeaderText="reservation_id" SortExpression="reservation_id" />
-            <asp:BoundField DataField="reservation_date" HeaderText="reservation_date" SortExpression="reservation_date" />
-            <asp:BoundField DataField="reservation_appeal" HeaderText="reservation_appeal" SortExpression="reservation_appeal" />
-            <asp:BoundField DataField="client_id" HeaderText="client_id" SortExpression="client_id" />
-            <asp:BoundField DataField="copy_id" HeaderText="copy_id" SortExpression="copy_id" />
+            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+            <asp:BoundField DataField="reservation_id" HeaderText="reservation_id" 
+                SortExpression="reservation_id" />
+            <asp:BoundField DataField="reservation_date" HeaderText="reservation_date" 
+                SortExpression="reservation_date" />
+            <asp:BoundField DataField="reservation_appeal" HeaderText="reservation_appeal" 
+                SortExpression="reservation_appeal" />
+            <asp:BoundField DataField="client_id" HeaderText="client_id" 
+                SortExpression="client_id" />
+            <asp:BoundField DataField="book_id" HeaderText="book_id" 
+                SortExpression="book_id" />
         </Columns>
     </asp:GridView>
-    <asp:ObjectDataSource ID="ObjectDataReservationSource1" runat="server" DataObjectTypeName="DatabaseLibrary.Reservation"
-        DeleteMethod="Delete" InsertMethod="InsertReservation" SelectMethod="SelectAll"
+    <br />
+    <asp:ObjectDataSource ID="ODS_reservation" runat="server" 
+        DataObjectTypeName="DatabaseLibrary.Reservation" DeleteMethod="Delete" 
+        InsertMethod="InsertReservation" SelectMethod="SelectAll" 
         TypeName="DatabaseLibrary.ReservationTable" UpdateMethod="Update">
         <DeleteParameters>
             <asp:Parameter Name="reservationId" Type="Int32" />
         </DeleteParameters>
     </asp:ObjectDataSource>
+    <br />
     <br />
     <asp:ObjectDataSource ID="ODS_client" runat="server" DataObjectTypeName="DatabaseLibrary.Client"
         DeleteMethod="Delete" InsertMethod="Insert" SelectMethod="SelectAll" TypeName="DatabaseLibrary.ClientTable">
@@ -238,9 +252,10 @@
             <asp:Parameter Name="clientId" Type="Int32" />
         </DeleteParameters>
     </asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="ODS_copy" runat="server" DataObjectTypeName="DatabaseLibrary.Copy"
-        DeleteMethod="Delete" InsertMethod="InsertCopy" SelectMethod="SelectAll" TypeName="DatabaseLibrary.CopyTable"
-        UpdateMethod="Update">
+    <asp:ObjectDataSource ID="ODS_copy" runat="server" SelectMethod="SelectAll" 
+        TypeName="DatabaseLibrary.CopyTable" 
+        DataObjectTypeName="DatabaseLibrary.Copy" DeleteMethod="Delete" 
+        InsertMethod="InsertCopy" UpdateMethod="Update">
         <DeleteParameters>
             <asp:Parameter Name="copyId" Type="Int32" />
         </DeleteParameters>
