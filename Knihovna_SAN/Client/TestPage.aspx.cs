@@ -80,23 +80,9 @@ namespace Knihovna_SAN.Client
                 reservation_appeal = DateTime.Now;
             }
             
-            //if (TextBox_reservation_appeal.Text != "")
-            //{
-            //    string reservation_appeal = TextBox_reservation_appeal.Text;
-            //    string[] items = reservation_appeal.Split('/');
-            //    reservation_appeal = new DateTime(Int32.Parse(items[2]), Int32.Parse(items[1]), Int32.Parse(items[0]));
-            //}
-            
-            
-
-            //string reservation_date = TextBox_reservation_date.Text;
-            //string[] items2 = reservation_date.Split('/');
-            //DateTime reservation_date_toDB = new DateTime(Int32.Parse(items2[2]), Int32.Parse(items2[1]), Int32.Parse(items2[0]));
-            //datum vlozeni rezervace bude vzdy NOW
             res.reservation_date = DateTime.Now;
 
             res.reservation_appeal = reservation_appeal;
-            //res.reservation_date = reservation_date_toDB;
             
             new DatabaseLibrary.ReservationTable().InsertReservation(res);
             
@@ -106,9 +92,8 @@ namespace Knihovna_SAN.Client
         //prida rezervaci knihy z pohledu klienta
         protected void Button12_Click(object sender, EventArgs e)
         {
-            //int clientId = 1; //tady je potreba ziskat id prihlaseneho uzivatele
-            //Session["clientId"] = 2;
-            int clientId = (int)Context.Session["clientId"];
+            
+            int clientId = (int)Session["clientId"];
             DateTime reservation_appeal = Convert.ToDateTime(null);
             //prida zaznam do rezervace knihy
             DatabaseLibrary.Reservation res = new DatabaseLibrary.Reservation();
