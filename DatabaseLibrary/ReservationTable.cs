@@ -8,6 +8,9 @@ using System.Configuration;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Web;
+using System.Runtime.Remoting.Contexts;
+
+
 
 namespace DatabaseLibrary
 {
@@ -21,6 +24,7 @@ namespace DatabaseLibrary
         private const string DELETE = "DELETE FROM reservation WHERE reservation_id = @reservation_id";
         private const string SELECT_COUNT_RES_BY_BOOKID = "SELECT COUNT(*) FROM reservation WHERE book_id = @book_id";
         //private const String SELECT_ALL_BY_BOOKID;
+        private const string SELECT_ALL_BY_CLIENT = "SELECT r.*, b.book_name FROM reservation r INNER JOIN book b ON b.book_id = r.book_id WHERE r.client_id = @client_id";
         private string connString = null;
 
         public ReservationTable()
@@ -67,10 +71,40 @@ namespace DatabaseLibrary
                     Reservation res = new Reservation();
                     
                     res.reservation_id = reader.GetInt32("reservation_id");
-                    res.reservation_date = reader.GetDateTime("reservation_date");
-                    res.reservation_appeal = reader.GetDateTime("reservation_appeal");                
+                    res.reservation_date = reader.GetDateTime("reservation_date"); 
+                    res.reservation_appeal = reader.GetDateTime("reservation_appeal");
                     res.client_id = reader.GetInt32("client_id");
                     res.book_id = reader.GetInt32("book_id");
+
+                    resList.Add(res);
+                }
+            }
+            return resList;
+        }
+
+        //SELECT ALL BY CLIENT
+        [DataObjectMethod(DataObjectMethodType.Select, true)]
+        public List<Reservation> SelectAllByClient(int clientId)
+        {
+            
+            List<Reservation> resList = new List<Reservation>();
+            using (MySqlConnection conn = new MySqlConnection(connString))
+            {
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(SELECT_ALL_BY_CLIENT, conn);
+                command.Parameters.AddWithValue("@client_id", clientId);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Reservation res = new Reservation();
+
+                    res.reservation_id = reader.GetInt32("reservation_id");
+                    res.reservation_date = reader.GetDateTime("reservation_date");
+                    res.reservation_appeal = reader.GetDateTime("reservation_appeal");
+                    res.client_id = reader.GetInt32("client_id");
+                    res.book_id = reader.GetInt32("book_id");
+                    res.book_name = reader.GetString("book_name");
 
                     resList.Add(res);
                 }

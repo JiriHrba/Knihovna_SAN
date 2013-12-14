@@ -101,6 +101,30 @@
 </asp:ObjectDataSource>
 
 <h1>Rezervované knihy</h1>
+</br>
+    <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
+        DataKeyNames="reservation_id" DataSourceID="ODS_clientReservations">
+        <Columns>
+            <asp:BoundField DataField="book_name" HeaderText="Název knihy" 
+                SortExpression="book_name" />
+            <asp:BoundField DataField="reservation_date" HeaderText="Datum rezervace" 
+                SortExpression="reservation_date" />
+            <asp:BoundField DataField="reservation_appeal" HeaderText="K vyzvednutí" 
+                SortExpression="reservation_appeal" />
+            <asp:CommandField ShowDeleteButton="True" />
+        </Columns>
+    </asp:GridView>
+    <asp:ObjectDataSource ID="ODS_clientReservations" runat="server" 
+        DeleteMethod="Delete" SelectMethod="SelectAllByClient" 
+        TypeName="DatabaseLibrary.ReservationTable">
+        <DeleteParameters>
+            <asp:Parameter Name="reservationId" Type="Int32" />
+        </DeleteParameters>
+        <SelectParameters>
+            <asp:SessionParameter DefaultValue="" Name="clientId" SessionField="clientId" 
+                Type="Int32" />
+        </SelectParameters>
+    </asp:ObjectDataSource>
 <hr/>
 
 <h1>Aktuální sankce</h1>
