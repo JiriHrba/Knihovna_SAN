@@ -18,7 +18,9 @@ namespace DatabaseLibrary
         private const String INSERT_COPY = @"insert into copy (copy_is_present, book_id) values (@copy_is_present, @book_id)";
         private const string SELECT_ALL = "SELECT * FROM Copy";
         private const string SELECT_ALL_BY_BOOK_ID = "SELECT * FROM copy WHERE book_id = @book_id";
-        private const string UPDATE_COPY = "UPDATE copy SET copy_is_present = @copy_is_present, book_id = @book_id WHERE copy_id = @copy_id";
+        private const string SELECT_ALLPRESENT_BY_BOOK_ID = "SELECT * FROM copy WHERE book_id = @book_id AND copy_is_present=1";
+        //private const string UPDATE_COPY = "UPDATE copy SET copy_is_present = @copy_is_present, book_id = @book_id WHERE copy_id = @copy_id";
+        private const string UPDATE_COPY = "UPDATE copy SET copy_is_present = @copy_is_present WHERE copy_id = @copy_id";
         private const string SELECT_ONE = "SELECT * FROM copy WHERE copy_id = @copy_id";
         private const string DELETE = "DELETE FROM copy WHERE copy_id = @copy_id";
         private const string SELECT_COUNT_BY_BOOKID = "SELECT COUNT(*) FROM copy WHERE book_id = @book_id";
@@ -97,6 +99,32 @@ namespace DatabaseLibrary
             }
             return copyList;
         }
+
+        //SELECT ALL PRESENT BY BOOK ID
+        [DataObjectMethod(DataObjectMethodType.Select, true)]
+        public List<Copy> SelectAllPresentByBook(int bookId)
+        {
+            List<Copy> copyList = new List<Copy>();
+            using (MySqlConnection conn = new MySqlConnection(connString))
+            {
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(SELECT_ALLPRESENT_BY_BOOK_ID, conn);
+                command.Parameters.AddWithValue("@book_id", bookId);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Copy copy = new Copy();
+                    copy.copy_id = reader.GetInt32(0);
+                    copy.copy_is_present = reader.GetInt32(1);
+                    copy.book_id = reader.GetInt32(2);
+
+                    copyList.Add(copy);
+                }
+            }
+            return copyList;
+        }
+
         //UPDATE
         /// <summary>
         /// Provede update jednoho vytisku.
@@ -110,7 +138,8 @@ namespace DatabaseLibrary
                 MySqlCommand command = new MySqlCommand(UPDATE_COPY, conn);
 
                 command.Parameters.AddWithValue("@copy_is_present", copy.copy_is_present);
-                command.Parameters.AddWithValue("@book_id", copy.book_id);
+                //command.Parameters.AddWithValue("@book_id", copy.book_id);
+                command.Parameters.AddWithValue("@copy_id", copy.copy_id);
 
                 /* Executes the command */
                 command.ExecuteNonQuery();

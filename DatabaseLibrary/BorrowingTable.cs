@@ -19,6 +19,7 @@ namespace DatabaseLibrary
         private const string SELECT_ONE = "SELECT * FROM borrowing WHERE borrowing_id = @id";
         private const string SELECT_ALL = "SELECT * FROM borrowing";
         private const string DELETE = "DELETE FROM borrowing WHERE borrowing_id = @id";
+        private const string SELLECT_ALL_BY_CLIENT_ID = "SELECT * FROM borrowing where client_id = @id";
 
         private string connString;
 
@@ -115,6 +116,32 @@ namespace DatabaseLibrary
             {
                 conn.Open();
                 MySqlCommand command = new MySqlCommand(SELECT_ALL, conn);
+
+
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    borrList.Add(ReadBorrowingData(reader));
+                }
+            }
+            return borrList;
+        }
+
+        /// <summary>
+        /// Vrati vsechny vypujcky ze systemu dle id klienta
+        /// </summary>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, true)]
+        public List<Borrowing> SelectAllbyClientId(int clientId)
+        {
+            List<Borrowing> borrList = new List<Borrowing>();
+            using (MySqlConnection conn = new MySqlConnection(connString))
+            {
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(SELLECT_ALL_BY_CLIENT_ID, conn);
+                command.Parameters.AddWithValue("@id", clientId);
+
                 MySqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())

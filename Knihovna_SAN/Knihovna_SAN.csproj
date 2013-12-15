@@ -93,6 +93,7 @@
     <Content Include="Action\ActionSummary.aspx" />
     <Content Include="Client\ClientAdministration.aspx" />
     <Content Include="Client\ClientProfile.aspx" />
+    <Content Include="Client\Loans.aspx" />
     <Content Include="Client\NewClient.aspx" />
     <Content Include="Client\TestPage.aspx" />
     <Content Include="Global.asax" />
@@ -149,6 +150,13 @@
     </Compile>
     <Compile Include="Client\ClientProfile.aspx.designer.cs">
       <DependentUpon>ClientProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Loans.aspx.cs">
+      <DependentUpon>Loans.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\Loans.aspx.designer.cs">
+      <DependentUpon>Loans.aspx</DependentUpon>
     </Compile>
     <Compile Include="Client\NewClient.aspx.cs">
       <DependentUpon>NewClient.aspx</DependentUpon>
